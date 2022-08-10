@@ -23,16 +23,17 @@ variable "f5xc_tenant" {
 }
 
 module "bgp" {
-  source                = "./modules/f5xc/bgp"
-  f5xc_namespace        = "system"
-  f5xc_tenant           = var.f5xc_tenant
-  f5xc_api_url          = var.f5xc_api_url
-  f5xc_api_p12_file     = var.f5xc_api_p12_file
-  f5xc_bgp_asn          = 65200
-  f5xc_bgp_description  = "Neighbor Xyz"
-  f5xc_bgp_name         = format("%s-bgp-%s", var.project_prefix, var.project_suffix)
-  f5xc_bgp_peer_asn     = 65000
-  f5xc_bgp_peer_name    = format("%s-peer-%s", var.project_prefix, var.project_suffix)
-  f5xc_bgp_peer_address = "169.254.186.2"
-  f5xc_site_name        = format("%s-%s", var.project_prefix, var.project_suffix)
+  source                  = "./modules/f5xc/bgp"
+  f5xc_namespace          = "system"
+  f5xc_tenant             = var.f5xc_tenant
+  f5xc_api_url            = var.f5xc_api_url
+  f5xc_api_p12_file       = var.f5xc_api_p12_file
+  f5xc_bgp_asn            = 65200
+  f5xc_bgp_description    = "Neighbor Xyz"
+  f5xc_bgp_name           = format("%s-bgp-%s", var.project_prefix, var.project_suffix)
+  f5xc_bgp_peer_asn       = 65000
+  f5xc_bgp_peer_name      = format("%s-peer-%s", var.project_prefix, var.project_suffix)
+  f5xc_bgp_peer_address   = "169.254.186.2"
+  f5xc_site_name          = format("%s-%s", var.project_prefix, var.project_suffix)
+  f5xc_bgp_interface_name = format("%s-bgp-interface-%s", var.project_prefix, var.project_suffix)
 }
