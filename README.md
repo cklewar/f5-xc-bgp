@@ -15,7 +15,56 @@ This repository consists of Terraform templates to bring create a F5XC BGP objec
 ### Example Output
 
 ```bash
+Terraform will perform the following actions:
 
+  # module.bgp.volterra_bgp.bgp will be created
+  + resource "volterra_bgp" "bgp" {
+      + id        = (known after apply)
+      + name      = "f5xc-bgp-01"
+      + namespace = "system"
+
+      + bgp_parameters {
+          + asn                = 65200
+          + bgp_router_id_type = "BGP_ROUTER_ID_FROM_INTERFACE"
+          + local_address      = true
+        }
+
+      + peers {
+          + target_service = "frr"
+
+          + external {
+              + address = "169.254.186.2"
+              + asn     = 65000
+              + port    = 179
+
+              + interface {
+                  + name      = "f5xc-bgp-interface-01"
+                  + namespace = "system"
+                  + tenant    = "***"
+                }
+            }
+
+          + metadata {
+              + description = "Neighbor Xyz"
+              + name        = "f5xc-peer-01"
+            }
+        }
+
+      + where {
+          + site {
+              + network_type = "VIRTUAL_NETWORK_SITE_LOCAL"
+
+              + ref {
+                  + kind      = (known after apply)
+                  + name      = "f5xc-01"
+                  + namespace = "system"
+                  + tenant    = "***"
+                }
+            }
+        }
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
 ```
 
 ## Create F5XC Namespace
