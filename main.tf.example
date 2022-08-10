@@ -1,0 +1,26 @@
+variable "project_prefix" {
+  type        = string
+  description = "prefix string put in front of string"
+  default = "f5xc"
+}
+
+variable "project_suffix" {
+  type        = string
+  description = "prefix string put at the end of string"
+  default = "01"
+}
+
+variable "f5xc_api_url" {
+  type = string
+}
+
+variable "f5xc_api_p12_file" {
+  type = string
+}
+
+module "f5xc_namespace" {
+  source              = "./modules/f5xc/namespace"
+  f5xc_api_p12_file   = var.f5xc_api_p12_file
+  f5xc_api_url        = var.f5xc_api_url
+  f5xc_namespace_name = format("%s-namespace-%s", var.project_prefix, var.project_suffix)
+}
