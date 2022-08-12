@@ -67,7 +67,7 @@ Terraform will perform the following actions:
 Plan: 1 to add, 0 to change, 0 to destroy.
 ```
 
-## Create F5XC Namespace
+## Create F5XC BGP
 
 ```hcl
 variable "project_prefix" {
